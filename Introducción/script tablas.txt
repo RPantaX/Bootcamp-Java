@@ -1,0 +1,35 @@
+create table usuarios
+(
+    usuario_id serial primary key,
+    username varchar(20) not null unique,
+	password varchar not null,
+    email varchar(70) not null unique,
+    direccion varchar(60) not null
+);
+
+create table post
+(
+    post_id serial primary key,
+    titulo varchar not null,
+    contenido_post text not null,
+    fecha_creacion date default current_date,
+
+    usuario_id_fk integer
+);
+
+-- agregando fk
+alter table post add constraint fk_usuario foreign key (usuario_id_fk)
+references usuarios(usuario_id) on delete set null;
+
+create table comentarios
+(
+    comentario_id serial primary key,
+    usuario_id integer,
+    post_id integer,
+    contenido varchar not null,
+    num_reacciones int default 0
+    
+    
+);
+alter table comentarios add CONSTRAINT FK_UsuarioComentario foreign key (usuario_id) references usuarios(usuario_id) on delete set null;
+alter table comentarios add CONSTRAINT FK_PostComentario foreign key (post_id) references post(post_id) on delete cascade;

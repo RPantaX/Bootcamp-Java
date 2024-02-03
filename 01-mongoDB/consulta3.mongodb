@@ -1,0 +1,68 @@
+use("db1")
+// $ gte: mayor igual q, lte:menor  igual q
+db.universidades.find(
+    {
+        alumnos: {
+            $lt: 13000
+        }
+        
+    },
+    {
+        nombre: true,
+        alumnos: true
+    }
+)
+
+use("db1")
+db.universidades.find(
+    {
+        presupuesto:
+        {
+            $gte: 1500000,
+            $lte: 2000000
+        }
+    },
+    {
+        nombre: true,
+        presupuesto: true
+    }
+)
+
+use("db1")
+db.universidades.find(
+    {
+        $or: [
+            {
+                presupuesto:
+                {
+                    $gt: 120000
+                },
+                alumnos:
+                {
+                    $lt:9000
+                }
+            }
+        ]
+    },
+)
+
+//inc: incrementa al valor que tú tengas.
+use("db1")
+db.universidades.updateMany(
+    {
+        alumnos:
+        {
+            $gte: 10000
+        }
+    },
+    //actualizacion
+    {
+        $inc:{
+            presupuesto: 500000
+        }
+    }
+)
+
+use("db1")
+db.universidades.find()
+

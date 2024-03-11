@@ -84,12 +84,12 @@ public class UsuarioServiceImpl implements UsuarioService {
         Set<String> assignedRoles = new HashSet<>();
         Set<Rol> roles= new HashSet<>();
         for (String rol : usuario.getRoles()) {
-            Optional<Rol> rolEntity = rolRepository.findByNombreRol(rol);
+            Optional<Rol> rolEntity = rolRepository.findByNombreRol(rol.toUpperCase());
             if (!rolEntity.isPresent()) {
-                roles.add(rolRepository.save(Rol.builder().nombreRol(rol).build()));
+                roles.add(rolRepository.save(Rol.builder().nombreRol(rol.toUpperCase()).build()));
             }
             else roles.add(rolEntity.get());
-            assignedRoles.add(rol);
+            assignedRoles.add(rol.toUpperCase());
         }
         return insertarDatos(usuario,roles);
     }

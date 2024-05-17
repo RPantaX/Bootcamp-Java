@@ -15,18 +15,9 @@ import java.util.List;
 @RestController
 @RequestMapping("/ms-prueba/v1/usuarios")
 @RequiredArgsConstructor
-@RefreshScope
 public class UsuarioPruebaController {
 
     private final UsuarioClient usuarioClient;
-
-    @Value("${valor.propiedad}") //aqui obtiene el nuevo valor que está en las propiedades
-    private String valorProp;
-
-    @GetMapping("")
-    public ResponseEntity<String> getValor(){
-        return ResponseEntity.ok(valorProp);
-    }
 
     @GetMapping("/all")
     public ResponseEntity<List<Usuario>> getUsuarios(){

@@ -14,6 +14,8 @@
     <packaging>pom</packaging>
     <name>ms-registro</name>
     <description>ms-registro</description>
+
+
     <modules>
         <module>domain</module>
         <module>infraestructure</module>
